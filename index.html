@@ -1,0 +1,372 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samanvay (समनवय) – The Garden of Harmony</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: { 50: '#f4f7f4', 100: '#e5ece5', 200: '#cbdacb', 300: '#a6c2a6', 400: '#7fa47f', 500: '#5e855e', 600: '#486948' },
+            tealsoft: { 50: '#f0f9f8', 100: '#d9f0ee', 200: '#b4e1dc', 300: '#84cac3', 400: '#51aca5', 500: '#358f89' },
+            lotus: { 50: '#fff5f7', 100: '#ffe8ec', 200: '#ffd0d9', 300: '#ffa8b9', 400: '#f6728b', 500: '#e34767' },
+            cream: { 50: '#fdfbf7', 100: '#faf5ec', 200: '#f5ecd9', 300: '#ebd8b6' },
+            warmgold: { 100: '#fef3c7', 300: '#fcd34d', 500: '#f59e0b', 600: '#d97706' }
+          },
+          fontFamily: {
+            serif: ['Marcellus', 'Georgia', 'serif'],
+            hindi: ['Rozha One', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Calming watercolor paper texture simulation */
+    body {
+      background-color: #faf6f0;
+      background-image: 
+        radial-gradient(at 10% 20%, rgba(203, 218, 203, 0.45) 0px, transparent 50%),
+        radial-gradient(at 90% 15%, rgba(217, 240, 238, 0.5) 0px, transparent 55%),
+        radial-gradient(at 50% 85%, rgba(255, 232, 236, 0.45) 0px, transparent 60%),
+        radial-gradient(at 80% 90%, rgba(245, 236, 217, 0.6) 0px, transparent 50%);
+      background-attachment: fixed;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Soft Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px -8px rgba(94, 133, 94, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+    }
+
+    .glass-board {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 20px 45px -12px rgba(81, 172, 165, 0.15), inset 0 0 40px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Smooth Tile Path Nodes */
+    .board-tile {
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .board-tile:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    /* Player Token - Radiant Pearl */
+    .player-token {
+      transition: all 0.45s cubic-bezier(0.34, 1.3, 0.64, 1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.95), 0 0 35px rgba(132, 202, 195, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Breathing Circle Animation Keyframes */
+    @keyframes breathExpand {
+      0%, 100% { transform: scale(0.9); opacity: 0.75; }
+      40% { transform: scale(1.35); opacity: 1; }
+      60% { transform: scale(1.35); opacity: 0.95; }
+    }
+    .breathing-pulse {
+      animation: breathExpand 10s ease-in-out infinite;
+    }
+
+    /* Petal Dissolve Animation */
+    @keyframes floatAway {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--rot)); opacity: 0; }
+    }
+    .floating-petal {
+      animation: floatAway 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    /* Custom Scrollbar for notes */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(166, 194, 166, 0.4); border-radius: 9999px; }
+  </style>
+</head>
+
+<body class="min-h-screen text-stone-700 flex flex-col justify-between p-3 sm:p-6 antialiased relative selection:bg-tealsoft-200">
+
+  <!-- Ambient Floating Botanical Leaves (SVGs) in Background -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-35">
+    <svg class="absolute top-10 left-8 w-32 h-32 text-sage-300" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M50 0 C65 25 80 40 100 50 C80 60 65 75 50 100 C35 75 20 60 0 50 C20 40 35 25 50 0 Z" opacity="0.3"/>
+    </svg>
+    <svg class="absolute bottom-20 right-10 w-48 h-48 text-lotus-200" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="40" opacity="0.25"/>
+    </svg>
+    <svg class="absolute top-1/2 left-2/3 w-36 h-36 text-tealsoft-300" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M10 50 Q 50 10 90 50 Q 50 90 10 50 Z" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <!-- Header Section -->
+  <header class="max-w-4xl mx-auto w-full text-center pt-2 pb-4">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100/70 text-sage-600 text-xs tracking-wider uppercase font-medium mb-1">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      A Heartfulness Mindful Sanctuary
+    </div>
+    <h1 class="font-serif text-3xl sm:text-5xl text-stone-800 tracking-tight flex items-center justify-center gap-3">
+      <span>समनवय</span>
+      <span class="text-xs sm:text-sm font-sans font-light tracking-widest text-stone-400">|</span>
+      <span class="text-2xl sm:text-4xl text-tealsoft-500 font-serif italic">Samanvay</span>
+    </h1>
+    <p class="font-sans text-xs sm:text-sm text-stone-500 mt-1 max-w-md mx-auto font-light">
+      The Garden of Harmony • Take a deep breath, roll with calm intention, and nurture inner healing.
+    </p>
+
+    <!-- Sound & Ambient Control Bar -->
+    <div class="flex items-center justify-center gap-3 mt-3">
+      <button id="toggleAudioBtn" onclick="toggleAudio()" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/70 hover:bg-white text-stone-600 border border-sage-200 shadow-sm transition flex items-center gap-2">
+        <span id="audioIcon">🌱</span>
+        <span id="audioLabel">Ambient Calm: Off</span>
+      </button>
+
+      <button onclick="openRulesModal()" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/70 hover:bg-white text-stone-600 border border-sage-200 shadow-sm transition flex items-center gap-1.5">
+        <span>🌸</span>
+        <span>Tile Wisdom</span>
+      </button>
+
+      <button onclick="resetBoard()" class="px-3 py-1.5 rounded-full text-xs font-medium bg-stone-200/60 hover:bg-stone-200 text-stone-600 transition">
+        Reset Journey
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Play Area -->
+  <main class="max-w-5xl mx-auto w-full flex-1 flex flex-col items-center justify-center my-2 sm:my-4">
+    
+    <!-- Top Status Banner -->
+    <div class="w-full flex items-center justify-between px-3 py-2 max-w-4xl text-xs font-medium text-stone-500 mb-2">
+      <div class="flex items-center gap-1.5">
+        <span class="text-tealsoft-500">📍 Current Sanctuary:</span>
+        <span id="currentTileName" class="text-stone-700 font-semibold">Aarambh (The Gentle Beginning)</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span>Step <span id="currentTileIdx" class="text-sage-600 font-bold">1</span> of 24</span>
+      </div>
+    </div>
+
+    <!-- The Mindful Board (Canvas Grid / Flow) -->
+    <div class="w-full max-w-4xl glass-board rounded-3xl p-4 sm:p-8 relative min-h-[460px] sm:min-h-[500px] flex flex-col justify-between">
+      
+      <!-- Board Tiles Grid (24 Tiles arranged in an intuitive serpentine path) -->
+      <div id="boardContainer" class="grid grid-cols-4 sm:grid-cols-6 gap-2.5 sm:gap-3.5 z-10">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Action Panel Under Board -->
+      <div class="mt-6 pt-4 border-t border-sage-200/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+        
+        <!-- Thought Inspiration Prompt -->
+        <div class="flex items-center gap-3 text-xs sm:text-sm text-stone-600 font-light max-w-md text-center sm:text-left">
+          <div class="w-8 h-8 rounded-full bg-lotus-100 flex items-center justify-center text-lotus-500 shrink-0 shadow-sm">
+            🕊️
+          </div>
+          <div id="subtleAffirmation" class="italic">
+            "Every step taken in awareness is a return to your own sacred center."
+          </div>
+        </div>
+
+        <!-- Dice & Movement Controller -->
+        <div class="flex items-center gap-3.5">
+          <!-- Animated Dice Display -->
+          <div id="diceFace" class="w-14 h-14 rounded-2xl bg-gradient-to-br from-white to-cream-100 border-2 border-sage-200 shadow-md flex items-center justify-center text-2xl font-serif text-sage-600 transition-transform duration-500 select-none">
+            🌱
+          </div>
+
+          <!-- Roll Button -->
+          <button id="rollBtn" onclick="rollMindfulDice()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-sage-400 via-tealsoft-400 to-tealsoft-500 hover:from-sage-500 hover:to-tealsoft-600 text-white font-medium text-sm sm:text-base shadow-md hover:shadow-lg transition-all transform active:scale-95 flex items-center gap-2.5">
+            <svg class="w-5 h-5 text-tealsoft-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            <span>Roll Mindful Steps (1-4)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-2 text-stone-400 text-xs font-light">
+    Rooted in Heartfulness Meditation, Compassion, and Forgiveness • Free & Offline Sanctuary
+  </footer>
+
+  <!-- ================= MODALS & MINDFUL POPUPS ================= -->
+
+  <!-- 1. Deep Breath (Thodi Saans) Modal -->
+  <div id="breathModal" class="fixed inset-0 z-50 bg-stone-900/30 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 text-center relative border border-white">
+      <div class="w-12 h-12 rounded-full bg-tealsoft-100 text-tealsoft-600 mx-auto flex items-center justify-center text-xl mb-3 shadow-inner">
+        🌬️
+      </div>
+      <h3 class="font-serif text-2xl text-stone-800 mb-1">Thodi Saans (Deep Breath)</h3>
+      <p class="text-xs text-stone-500 mb-6 font-light">Synchronize your heartbeat with the gentle expansion.</p>
+
+      <!-- Interactive Breathing Circle Visualizer -->
+      <div class="relative w-48 h-48 mx-auto my-4 flex items-center justify-center">
+        <!-- Outer Glow Ring -->
+        <div id="breathOuterRing" class="absolute inset-0 rounded-full bg-tealsoft-100/60 transition-all duration-1000 ease-in-out scale-90"></div>
+        <!-- Inner Expanding Orb -->
+        <div id="breathOrb" class="w-32 h-32 rounded-full bg-gradient-to-br from-tealsoft-200 via-tealsoft-300 to-sage-300 shadow-xl flex flex-col items-center justify-center text-stone-700 transition-all duration-1000 ease-in-out">
+          <span id="breathPhaseText" class="font-serif text-base font-semibold">Inhale...</span>
+          <span id="breathTimerNum" class="text-xs text-stone-600 font-mono mt-0.5">4s</span>
+        </div>
+      </div>
+
+      <p id="breathGuidance" class="text-xs sm:text-sm text-stone-600 italic mt-4 font-light">
+        "Feel life entering softly. Letting go of every knot."
+      </p>
+
+      <button onclick="closeModal('breathModal')" class="mt-6 px-6 py-2.5 rounded-full bg-tealsoft-500 hover:bg-tealsoft-600 text-white text-xs font-medium shadow-sm transition">
+        I Feel Calmer Now
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. Self Reflection (Apne Saath) Modal -->
+  <div id="reflectionModal" class="fixed inset-0 z-50 bg-stone-900/30 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 relative border border-white text-center">
+      <span class="inline-block px-3 py-1 rounded-full bg-warmgold-100 text-warmgold-600 text-[11px] font-semibold tracking-wider uppercase mb-2">
+        🕊️ Contemplative Reflection
+      </span>
+      <h3 class="font-serif text-2xl text-stone-800 mb-2">Apne Saath (In Your Company)</h3>
+      
+      <!-- Aesthetic Card Quote Box -->
+      <div class="bg-gradient-to-br from-cream-50 to-white p-6 rounded-2xl border border-cream-200 shadow-sm my-4 text-left relative overflow-hidden">
+        <span class="text-5xl text-sage-200 font-serif absolute -top-2 -left-1 select-none opacity-40">“</span>
+        <p id="reflectionText" class="font-serif text-base sm:text-lg text-stone-700 leading-relaxed relative z-10 pl-3">
+          Forgiveness is not excusing what hurt you; it is freeing your own heart from carrying their mistake forever. You deserve your own peace.
+        </p>
+        <div class="mt-4 pt-3 border-t border-cream-200 flex items-center justify-between text-xs text-stone-400">
+          <span>Heartfulness Wisdom</span>
+          <span id="reflectionSource">Inner Light</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-stone-500 italic font-light px-4">
+        Take a moment to let this truth sink into the quiet space behind your chest.
+      </p>
+
+      <div class="mt-6 flex justify-center gap-3">
+        <button onclick="refreshReflectionPrompt()" class="px-4 py-2 rounded-full border border-sage-300 text-sage-600 hover:bg-sage-50 text-xs font-medium transition">
+          Another Insight ✨
+        </button>
+        <button onclick="closeModal('reflectionModal')" class="px-6 py-2 rounded-full bg-sage-500 hover:bg-sage-600 text-white text-xs font-medium shadow-sm transition">
+          Integrate & Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Shukriya (Gratitude Garden) Modal -->
+  <div id="gratitudeModal" class="fixed inset-0 z-50 bg-stone-900/30 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 relative border border-white text-center">
+      <div class="w-12 h-12 rounded-full bg-lotus-100 text-lotus-500 mx-auto flex items-center justify-center text-xl mb-3 shadow-inner">
+        🪷
+      </div>
+      <h3 class="font-serif text-2xl text-stone-800 mb-1">Shukriya (Gratitude Garden)</h3>
+      <p class="text-xs text-stone-500 mb-4 font-light">
+        Acknowledge one small, genuine grace in your life today—a sip of tea, your resilience, or morning light.
+      </p>
+
+      <!-- Input for Gratitude / Release -->
+      <div class="relative">
+        <textarea id="gratitudeInput" rows="3" placeholder="Today, my heart whispers thank you for..." class="w-full p-4 rounded-2xl bg-white/80 border border-sage-200 focus:outline-none focus:ring-2 focus:ring-lotus-300 text-xs sm:text-sm text-stone-700 resize-none shadow-inner"></textarea>
+        <!-- Floating Petals Canvas container -->
+        <div id="petalReleaseZone" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+      </div>
+
+      <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[11px] text-stone-400 font-light italic">Your words are strictly private & offline.</span>
+        <div class="flex gap-2 w-full sm:w-auto">
+          <button onclick="releaseGratitude()" class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-gradient-to-r from-lotus-400 to-lotus-500 hover:from-lotus-500 hover:to-lotus-600 text-white text-xs font-medium shadow-sm transition flex items-center justify-center gap-1.5">
+            <span>🌸</span>
+            <span>Release into Light</span>
+          </button>
+          <button onclick="closeModal('gratitudeModal')" class="px-4 py-2.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 text-xs font-medium transition">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Nirmalta (Inner Cleansing) Modal -->
+  <div id="cleansingModal" class="fixed inset-0 z-50 bg-stone-900/30 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 text-center relative border border-white">
+      <div class="w-12 h-12 rounded-full bg-tealsoft-100 text-tealsoft-600 mx-auto flex items-center justify-center text-xl mb-3 shadow-inner">
+        💧
+      </div>
+      <h3 class="font-serif text-2xl text-stone-800 mb-1">Nirmalta (Heart Cleaning)</h3>
+      <p class="text-xs text-stone-500 mb-4 font-light">Inspired by Heartfulness evening cleaning practice.</p>
+
+      <div class="bg-tealsoft-50/70 p-4 rounded-2xl border border-tealsoft-200/80 my-3 text-xs sm:text-sm text-stone-600 leading-relaxed text-left">
+        <p class="mb-2">
+          Gently suggest to yourself that all complexities, impressions of betrayal, heavy weight in your feet, and emotional fatigue are <strong>leaving your system from the back in the form of smoke or vapor.</strong>
+        </p>
+        <p class="italic text-tealsoft-600">
+          In their place, sacred light, lightness, and deep courage are filling every cell of your being.
+        </p>
+      </div>
+
+      <div class="my-4">
+        <!-- Progress Bar for 15s gentle cleansing timer -->
+        <div class="w-full bg-stone-200/80 h-1.5 rounded-full overflow-hidden">
+          <div id="cleanseProgressBar" class="bg-tealsoft-400 h-full w-0 transition-all duration-1000 ease-linear"></div>
+        </div>
+        <span id="cleanseTimerText" class="text-[11px] text-stone-400 mt-1 block">Allow 15 seconds of quiet discharge</span>
+      </div>
+
+      <button id="startCleanseBtn" onclick="startCleanseExercise()" class="px-5 py-2 rounded-full bg-tealsoft-500 hover:bg-tealsoft-600 text-white text-xs font-medium shadow-sm transition">
+        Begin Gentle Release
+      </button>
+      <button onclick="closeModal('cleansingModal')" class="ml-2 px-4 py-2 rounded-full border border-stone-300 text-stone-600 text-xs font-medium transition">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- 5. Prakriti (Nature Serenity) Modal -->
+  <div id="natureModal" class="fixed inset-0 z-50 bg-stone-900/30 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 text-center relative border border-white">
+      <div class="w-12 h-12 rounded-full bg-sage-100 text-sage-600 mx-auto flex items-center justify-center text-xl mb-3 shadow-inner">
+        🌿
+      </div>
+      <h3 class="font-serif text-2xl text-stone-800 mb-1">Prakriti (Earth Whisper)</h3>
+      <p class="text-xs text-stone-500 mb-4 font-light">Nature does not rush, yet everything is accomplished.</p>
+
+      <div class="bg-sage-50/80 p-5 rounded-2xl border border-sage-200 text-xs sm:text-sm text-stone-600 leading-relaxed my-3 font-serif">
+        <p id="naturePromptText">
+          "Observe how trees shed their leaves without agony, fully trusting that the coming spring has already prepared their renewal. You too will blossom anew."
+        </p>
+      </div>
+
+      <button onclick="playSingingBowlTone(); closeModal('natureModal')" class="mt-4 px-6 py-2.5 rounded-full bg-sage-500 hover:bg-sage-600 text-white text-xs font-medium shadow-sm transition">
+        I Receive this Harmony
+      </button>
+    </div>
+  </div>
+
+  <!-- 6. Shanti (Final Goal Destination) Modal -->
+  <div id="shantiModal" class="fixed inset-0 z-50 bg-stone-900/35 backdrop-blur-md flex items-center justify-center p-4
