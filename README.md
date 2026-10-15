@@ -1,1 +1,0 @@
-# Samanvay-A-Heartfulness-Mindful-Sanctuary
